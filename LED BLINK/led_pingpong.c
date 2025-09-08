@@ -1,5 +1,12 @@
 #include<LPC21xx.h>
-#include"delay.h"
+void delay_ms(unsigned int);
+void delay_ms(unsigned int ms){
+T0PR=15000-1;
+T0TCR=0x01;
+while(T0TC<ms);
+T0TCR=0x03;
+T0TCR=0x00;
+}
 int main(){
  int i,j;
 
@@ -20,4 +27,5 @@ IOCLR0=1<<j;
 }
 }
 }
+
 
